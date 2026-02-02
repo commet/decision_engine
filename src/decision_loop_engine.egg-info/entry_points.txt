@@ -1,2 +1,0 @@
-[console_scripts]
-decision-loop = decision_loop.cli.main:main
