@@ -1,0 +1,87 @@
+# AI Tools Decision Loop Configuration
+#
+# This configuration file defines the context, terminals, and current state
+# for AI tool selection decision making.
+
+context:
+  description: |
+    현재 AI 도구 선택을 고민 중.
+    주 용도는 코딩 보조와 문서 작성.
+    월 예산은 $30 정도, 주 5시간 정도 학습 가능.
+  tags:
+    - ai-tools
+    - productivity
+    - coding
+  notes: |
+    기존에 VS Code와 Notion을 사용 중.
+    새로운 도구 배우는 것에 거부감은 없음.
+
+terminals:
+  - id: T1_ideal
+    name: Ideal Future
+    weight: 0.3
+    description: |
+      AI 도구를 완전히 마스터하여 생산성이 극대화된 상태.
+      도구가 나의 확장이 되어, 복잡한 작업도 자연스럽게 처리.
+      새로운 기능이 나와도 빠르게 적응 가능.
+    criteria:
+      min_capability_breadth: 0.8
+      min_capability_depth: 0.7
+      min_ecosystem_size: 0.7
+      min_customization: 0.6
+      preferred_cost_model:
+        - freemium
+        - subscription
+      min_momentum: 0.7
+
+  - id: T2_realistic
+    name: Realistic Future
+    weight: 0.5
+    description: |
+      일상 업무에서 AI 도구를 안정적으로 활용하는 상태.
+      모든 기능을 쓰진 않지만, 핵심 기능은 능숙하게 사용.
+      가끔 한계를 느끼지만 전반적으로 만족.
+    criteria:
+      min_capability_breadth: 0.6
+      min_learning_curve: 0.5
+      min_documentation_quality: 0.6
+      min_vendor_stability: 0.7
+      max_monthly_cost_usd: 50
+
+  - id: T3_minimum
+    name: Regret-Minimized
+    weight: 0.2
+    description: |
+      최소한 후회하지 않는 선택을 한 상태.
+      도구가 갑자기 사라지거나, 가격이 폭등하거나,
+      배운 게 쓸모없어지는 상황은 피함.
+    criteria:
+      min_vendor_stability: 0.8
+      min_lock_in_risk: 0.6
+      min_data_privacy: 0.7
+      has_free_tier: true
+      min_community_support: 0.5
+
+current_state:
+  resources:
+    available_hours_per_week: 5
+    monthly_budget_usd: 30
+    existing_stack:
+      - vscode
+      - notion
+
+  constraints:
+    must_have_api: false
+    data_sensitivity: medium
+    corporate_approved_only: false
+    max_learning_curve: 0.4  # Tolerance for difficulty (0=no tolerance, 1=high tolerance)
+
+  preferences:
+    risk_tolerance: 0.6
+    preference_for_new: 0.7
+    importance_of_community: 0.5
+    primary_use_case: coding
+
+# Options source: 'builtin' uses the sample AI tools data
+# Can also be a path to a custom options file
+options_source: builtin
