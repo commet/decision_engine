@@ -2,6 +2,29 @@
 
 A decision-structuring engine that combines backward induction and forward feasibility checks to help structure complex decisions across multiple possible futures.
 
+> 📖 **Why I built this**: [Read the full story](docs/WHY_I_BUILT_THIS.md) — includes a real case study with OpenClaw
+
+## Requirements
+
+- Python 3.11+
+- pip
+
+## 5-Minute Quick Start
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/commet/decision_engine.git
+cd decision_engine
+
+# 2. Install
+pip install -e .
+
+# 3. Run demo
+decision-loop demo
+```
+
+That's it. You should see a ranked list of AI tools with scores.
+
 ## What This Is
 
 This is **not** a recommendation system or optimizer.
@@ -51,6 +74,31 @@ pip install -e .
 ```bash
 decision-loop demo
 ```
+
+**Sample Output:**
+```
+Rank   Option              Backward   Forward    Total
+1      ChatGPT (OpenAI)    0.99       0.99       0.98
+2      Claude (Anthropic)  0.99       0.98       0.97
+3      Gemini (Google)     0.98       0.99       0.97
+4      GitHub Copilot      0.88       0.98       0.87
+5      Cursor              0.90       0.96       0.86
+...
+```
+
+### OpenClaw Case Study
+
+See how the same tool gets completely different evaluations for different users:
+
+```bash
+python examples/openclaw_evaluation.py
+```
+
+| User Scenario | OpenClaw Result | Score |
+|---------------|-----------------|-------|
+| Security-sensitive dev | **ELIMINATED** (not even scored) | 0.000 |
+| Early adopter | Rank 3, Recommended | 0.952 |
+| Non-developer | Rank 9, Not recommended | 0.489 |
 
 ### With Configuration File
 
@@ -154,6 +202,11 @@ pip install -e ".[dev]"
 # Run tests
 python -m pytest tests/ -v
 ```
+
+## Documentation
+
+- [Why I Built This](docs/WHY_I_BUILT_THIS.md) — The story behind this engine with OpenClaw case study
+- [Complete Technical Guide](docs/COMPLETE_GUIDE.md) — Full implementation details
 
 ## License
 
